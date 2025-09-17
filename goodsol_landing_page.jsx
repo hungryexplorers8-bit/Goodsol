@@ -1,0 +1,163 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Twitter, MessageCircle, Send } from "lucide-react";
+
+const floatingItems = [
+  { src: "/goodsol-idea.jpeg", size: "w-24 h-24", top: "10%", left: "5%" },
+  { src: "/frog-circle.jpeg", size: "w-20 h-20", top: "60%", left: "80%" },
+  { src: "/coin.png", size: "w-16 h-16", top: "30%", left: "70%" },
+  { src: "/sparkle.png", size: "w-12 h-12", top: "75%", left: "20%" },
+  { src: "/heart.png", size: "w-14 h-14", top: "40%", left: "40%" },
+];
+
+export default function GoodSolLanding() {
+  return (
+    <div className="min-h-screen bg-black text-white font-sans relative overflow-hidden">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
+      >
+        <source src="/video-GOODSOL.mp4" type="video/mp4" />
+      </video>
+
+      {/* Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-purple-900/40 to-black/90 z-0" />
+
+      {/* Floating Meme Elements Across Whole Site */}
+      {floatingItems.map((item, index) => (
+        <motion.img
+          key={index}
+          src={item.src}
+          alt="floating meme"
+          className={`absolute ${item.size} opacity-70 z-0`}
+          style={{ top: item.top, left: item.left }}
+          animate={{ y: [0, -30, 0], rotate: [0, 15, -15, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 10 + index * 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center justify-center text-center py-28 px-6 z-10">
+        <motion.img
+          src="/goodsol-idea.jpeg"
+          alt="$GOODSOL Coin"
+          className="w-72 h-72 mb-10 rounded-full shadow-[0_0_50px_rgba(255,0,150,0.9)] border-8 border-pink-500 object-cover animate-bounce"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+        <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 drop-shadow-xl">
+          $GOODSOL
+        </h1>
+        <p className="mt-6 text-xl max-w-3xl text-gray-200">
+          $GOODSOL is the meme-powered coin for love, giving back, and pure meta
+          vibes. Launched live on Pump.Fun, powered by community and culture.
+        </p>
+
+        {/* Social Links */}
+        <div className="flex gap-4 mt-10 flex-wrap justify-center">
+          <a href="https://twitter.com" target="_blank">
+            <Button className="bg-blue-600 text-white flex items-center gap-2 rounded-full px-6 py-3 shadow-lg hover:scale-105 transition-transform">
+              <Twitter size={18} /> Twitter
+            </Button>
+          </a>
+          <a href="https://discord.gg/XgXNqyt7" target="_blank">
+            <Button className="bg-indigo-700 text-white flex items-center gap-2 rounded-full px-6 py-3 shadow-lg hover:scale-105 transition-transform">
+              <MessageCircle size={18} /> Discord
+            </Button>
+          </a>
+          <a href="https://t.me/DEEGENKINGCRYPTOFAM" target="_blank">
+            <Button className="bg-cyan-500 text-white flex items-center gap-2 rounded-full px-6 py-3 shadow-lg hover:scale-105 transition-transform">
+              <Send size={18} /> Telegram
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="bg-gradient-to-tr from-purple-800 via-pink-600 to-yellow-400 rounded-3xl p-10 max-w-5xl mx-auto shadow-[0_0_40px_rgba(255,0,150,0.7)]">
+          <h2 className="text-4xl font-extrabold text-center mb-6">
+            About $GOODSOL
+          </h2>
+          <p className="max-w-3xl mx-auto text-center text-lg text-white/90">
+            $GOODSOL isn’t just another meme coin. It’s a transparent, live
+            journey into building something positive in a noisy world. With
+            community vibes, memes, and a merch store, $GOODSOL is all about
+            spreading love and making crypto fun again.
+          </p>
+        </div>
+      </section>
+
+      {/* Merch Section */}
+      <section className="py-24 px-6 bg-black/60 relative z-10">
+        <h2 className="text-4xl font-extrabold text-center mb-14 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">
+          Merch Store
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+          {[1, 2, 3].map((item) => (
+            <Card
+              key={item}
+              className="shadow-2xl rounded-3xl border-4 border-pink-500 hover:scale-105 transition-transform bg-gradient-to-br from-purple-900 via-pink-800 to-yellow-700"
+            >
+              <CardContent className="p-6 flex flex-col items-center">
+                <img
+                  src={`/merch-${item}.png`}
+                  alt="GoodSol Merch"
+                  className="w-40 h-40 object-contain mb-4 drop-shadow-lg"
+                />
+                <p className="font-semibold text-white">Coming Soon</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Extra Artwork */}
+      <section className="py-24 px-6 relative z-10">
+        <h2 className="text-3xl font-bold text-center mb-12">Good Vibes Gallery</h2>
+        <div className="flex flex-col md:flex-row justify-center gap-8">
+          <img
+            src="/goodsol-idea.jpeg"
+            alt="GoodSol Idea"
+            className="rounded-3xl shadow-2xl w-full md:w-1/2 object-cover"
+          />
+          <img
+            src="/frog-circle.jpeg"
+            alt="Frogs & Friends"
+            className="rounded-3xl shadow-2xl w-full md:w-1/2 object-cover"
+          />
+        </div>
+      </section>
+
+      {/* Promotion Section */}
+      <section className="py-24 px-6 bg-gradient-to-r from-pink-600 via-yellow-400 to-purple-700 relative z-10">
+        <h2 className="text-4xl font-extrabold text-center mb-6 text-black">
+          Coin Promotion
+        </h2>
+        <p className="max-w-3xl mx-auto text-center text-lg text-black mb-8">
+          $GOODSOL will officially launch on Pump.Fun. Join the movement, tune
+          into the live streams, and be part of the future where memes meet
+          meaning.
+        </p>
+        <div className="flex justify-center">
+          <a href="https://pump.fun" target="_blank">
+            <Button className="bg-black text-yellow-400 px-8 py-4 text-lg rounded-full shadow-2xl hover:scale-110 transition-transform">
+              🚀 Launch on Pump.Fun
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-10 text-center bg-black text-gray-400 relative z-10">
+        <p>© 2025 $GOODSOL – Spreading Love & Good Vibes</p>
+      </footer>
+    </div>
+  );
+}
